@@ -3,8 +3,8 @@
 # In this example, a GKE zonal cluster is created.
 #
 # Replace the following with valid values
-# <FIXME:network_name>: A valid VPC network name
-# <FIXME:subnet_name>: A valid VPC subnet name
+# <resources.cluster.network>: A valid VPC network name
+# <resources.cluster.subnetwork>: A valid VPC subnet name
 
 
 imports:
@@ -23,6 +23,7 @@ resources:
         subnetwork: net
         nodePools:
           - name: default
+            initialNodeCount: 1
             config:
               oauthScopes:
                 - https://www.googleapis.com/auth/compute

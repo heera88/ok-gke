@@ -50,7 +50,6 @@ def generate_config(context):
     req_props = ['network', 'subnetwork']
 
     optional_props = [
-        'initialNodeCount',
         'initialClusterVersion',
         'description',
         'nodeConfig',
