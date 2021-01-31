@@ -38,14 +38,8 @@ def generate_config(context):
             }
     }
 
-    if properties.get('zone'):
-        # https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.zones.clusters
-        gke_cluster['type'] = 'gcp-types/container-v1beta1:projects.zones.clusters'
-        # TODO: remove, this is a bug
-        gke_cluster['properties']['zone'] = properties.get('zone')
-    else:
-        # https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters
-        gke_cluster['type'] = 'gcp-types/container-v1beta1:projects.locations.clusters'
+    gke_cluster['type'] = 'gcp-types/container-v1:projects.zones.clusters'
+    gke_cluster['properties']['zone'] = properties.get('zone')
 
     req_props = ['network', 'subnetwork']
 
