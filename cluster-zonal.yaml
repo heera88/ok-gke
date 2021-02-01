@@ -23,7 +23,7 @@ resources:
         subnetwork: net
         nodePools:
           - name: default
-            initialNodeCount: 1
+            initialNodeCount: 3
             config:
               oauthScopes:
                 - https://www.googleapis.com/auth/compute
