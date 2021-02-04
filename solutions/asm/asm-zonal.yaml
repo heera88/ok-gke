@@ -1,0 +1,52 @@
+# 2 GKE cluster setup to demonstrate traffic shaping with ASM
+#
+# In this example, a GKE zonal cluster is created.
+#
+# Replace the following with valid values
+# <resources.cluster.network>: A valid VPC network name
+# <resources.cluster.subnetwork>: A valid VPC subnet name
+
+
+imports:
+  - path: cluster.py
+    name: cluster.py
+
+resources:
+  - name: asm-1
+    type: cluster.py
+    properties:
+      zone: us-central1-a
+      cluster:
+        name: asm-1
+        description: ASM preferred!
+        network: net
+        subnetwork: net
+        nodePools:
+          - name: default
+            initialNodeCount: 2
+            config:
+              machineType: e2-standard-4
+              oauthScopes:
+                - https://www.googleapis.com/auth/compute
+                - https://www.googleapis.com/auth/devstorage.read_only
+                - https://www.googleapis.com/auth/logging.write
+                - https://www.googleapis.com/auth/monitoring
+  - name: asm-2
+    type: cluster.py
+    properties:
+      zone: us-central1-a
+      cluster:
+        name: asm-2
+        description: ASM preferred!
+        network: net
+        subnetwork: net
+        nodePools:
+          - name: default
+            initialNodeCount: 2
+            config:
+              machineType: e2-standard-4
+              oauthScopes:
+                - https://www.googleapis.com/auth/compute
+                - https://www.googleapis.com/auth/devstorage.read_only
+                - https://www.googleapis.com/auth/logging.write
+                - https://www.googleapis.com/auth/monitoring  

@@ -1,0 +1,24 @@
+# Sample Build file that 
+# 1) applies manifests in a folder
+# 2) deletes existing pods to spin up new ones 
+steps:
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  args:
+  - 'apply'
+  - '-f'
+  - 'kubernetes-manifests/'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=clockwork'
+
+# This step deletes all pods to reinitialize the services.
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Refresh
+  args:
+  - 'delete'
+  - '--all'
+  - 'pods'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=clockwork'
